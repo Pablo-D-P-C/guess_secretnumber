@@ -1,9 +1,21 @@
 {% extends "base.html" %}
 
 {% block content %}
-<form action="/result" method="post">
-    <label>Write your Number</label>
-    <input name="guess" type="text">
-    <button type="submit">Try It!!!</button>
-</form>
+{% if user and user.secret_number %}
+    <h1>Guess the secret Number!!!</h1>
+    <form action="/result" method="post">
+        <label>Write your Number</label>
+        <input name="guess" type="text">
+        <button type="submit">Try It!!!</button>
+    </form>
+{% else %}
+    <h1>Welcome to secret Number!!!</h1>
+    <form action="/login" method="post">
+        <label>Log In</label>
+        <input name="user-name" type="text" placeholder="Enter your name">
+        <input name="user-email" type="email" placeholder="email@example">
+        <input name="user-password" type="password" placeholder="Enter your password">
+        <button type="submit">Submit</button>
+    </form>
+{% endif %}
 {% endblock content %}
