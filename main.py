@@ -100,7 +100,7 @@ def profile_edit():
         name = request.form.get("profile-name")
         email = request.form.get("profile-email")
         old_password = request.form.get("old-password")
-        new_password = request.form.get("new_password")
+        new_password = request.form.get("new-password")
 
         if old_password and new_password:
             hashed_old_password = hashlib.sha256(old_password.encode()).hexdigest()
@@ -133,7 +133,7 @@ def profile_delete():
 
     elif request.method == "POST":
         user.deleted = True
-        db.delete(user)
+        db.add(user)
         db.commit()
 
         return redirect(url_for("index"))
